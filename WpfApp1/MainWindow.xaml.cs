@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WpfApp1
 {
@@ -21,12 +23,36 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private DispatcherTimer _timer;
+
+        public static readonly DependencyProperty TickCounterProperty = DependencyProperty.Register(
+            "TickCounter", typeof(int), typeof(MainWindow), new PropertyMetadata(default(int)));
+
         public MainWindow()
         {
             InitializeComponent();
+           
         }
 
-        private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+        public int TickCounter
+        {
+            get { return (int)GetValue(TickCounterProperty); }
+            set { SetValue(TickCounterProperty, value); }
+        }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+
+            if (--TickCounter <= 0)
+            {
+                var timer = (DispatcherTimer)sender;
+                timer.Stop();
+                MessageBox.Show($"Время вышло");
+            }
+        }
+    
+    private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
 
         }
@@ -49,24 +75,24 @@ namespace WpfApp1
 
         private void Start_Click(object sender, RoutedEventArgs e)
         {
-            Random random = new Random(); 
-            plusLeftLabel.Text=random.Next(0,20).ToString();
-            plusRightLabel.Text=random.Next(0,20).ToString();
-            minusLeftLabel.Text=random.Next(0,20).ToString();
-            minusRightLabel.Text=random.Next(0,20).ToString();
-            ymnLeftLabel.Text=random.Next(0,20).ToString();
-            ymnRightLabel.Text=random.Next(0,20).ToString();
-            ymnRightLabel.Text=random.Next(0,20).ToString();
-            delLeftLabel.Text=random.Next(0,20).ToString();
-            delRightLabel.Text=random.Next(0,20).ToString();
-            Timer timer= new Timer();
-            timer.Interval = 1000;
-            timer.Start();
-            timer.
-            timer.Stop();
-
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
+            Random random = new Random();
+            plusLeftLabel.Text = random.Next(0, 20).ToString();
+            plusRightLabel.Text = random.Next(0, 20).ToString();
+            minusLeftLabel.Text = random.Next(0, 20).ToString();
+            minusRightLabel.Text = random.Next(0, 20).ToString();
+            ymnLeftLabel.Text = random.Next(0, 20).ToString();
+            ymnRightLabel.Text = random.Next(0, 20).ToString();
+            delLeftLabel.Text = random.Next(1, 20).ToString();
+            delRightLabel.Text = random.Next(1, 20).ToString();
+            stopwatch.Stop();
+            TickCounter = 60;
+            _timer = new DispatcherTimer();
+            _timer.Interval = TimeSpan.FromSeconds(1d);
+            _timer.Tick += new EventHandler(Timer_Tick);
+            _timer.Start();
         }
-
         private void minusLeftLabel_TextChanged(object sender, TextChangedEventArgs e)
         {
 
@@ -111,5 +137,28 @@ namespace WpfApp1
         {
 
         }
+
+        private void proverka_Click(object sender, RoutedEventArgs e)
+        {
+            int symma = Convert.ToInt32(plusLeftLabel.Text) + Convert.ToInt32(plusRightLabel.Text);
+            int razn = Convert.ToInt32(minusLeftLabel.Text) - Convert.ToInt32(minusRightLabel.Text);
+            int ymn = Convert.ToInt32(ymnLeftLabel.Text) * Convert.ToInt32(ymnRightLabel.Text);
+            double del = Convert.ToDouble(delLeftLabel.Text) / Convert.ToDouble(delRightLabel.Text);
+            if (symma == Convert.ToInt32(plusOtvLabel.Text))
+            {
+                if (razn == Convert.ToInt32(minusOtvLabel.Text))
+                {
+                    if (ymn == Convert.ToInt32(ymnOtvLabel.Text))
+                    {
+                        if (del == Convert.ToDouble(delOtvLabel.Text))
+                        {
+                            _timer.Stop();
+                            int tim = 60 - Convert.ToInt32(Time.Text);
+                            MessageBox.Show($"Вы успешно завершили тест за {tim} сек");
+                        }
+                    }
+                }
+            }
+    }
     }
 }

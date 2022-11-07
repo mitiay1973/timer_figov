@@ -8,28 +8,31 @@
         Title="Математический тест" Height="450" Width="800">
     <Grid>
         <Label x:Name="timeLabel" Content="Time Left" HorizontalAlignment="Left" Margin="373,20,0,0" VerticalAlignment="Top" Height="61" Width="173" FontSize="36"/>
-        <TextBox x:Name="Time" HorizontalAlignment="Left" Margin="546,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="46" Width="244" FontSize="22" Foreground="Black" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="Time" Text="{Binding TickCounter,
+                                  RelativeSource={RelativeSource FindAncestor,
+                                                                 AncestorType={x:Type local:MainWindow}}}" HorizontalAlignment="Left" Margin="546,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="46" Width="244" FontSize="22" Foreground="Black" TextChanged="TextBox_TextChanged"/>
         <TextBox x:Name="plusLeftLabel" HorizontalAlignment="Left" Margin="54,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" IsEnabled="False" TextChanged="plusLeftLabel_TextChanged"/>
         <TextBox x:Name="plusRightLabel" HorizontalAlignment="Left" Margin="214,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" IsEnabled="False" TextChanged="plusRightLabel_TextChanged"/>
         <Label Content="+" HorizontalAlignment="Left" Margin="150,111,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="=" HorizontalAlignment="Left" Margin="302,111,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="plusOtvLabel" HorizontalAlignment="Left" Margin="356,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" TextChanged="plusOtvLabel_TextChanged"/>
+        <TextBox x:Name="plusOtvLabel" HorizontalAlignment="Left" Margin="356,104,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" TextChanged="plusOtvLabel_TextChanged" Text="0"/>
         <Button x:Name="Start" Content="Start the quiz" HorizontalAlignment="Left" Margin="239,387,0,0" VerticalAlignment="Top" Click="Start_Click"/>
         <TextBox x:Name="minusLeftLabel" HorizontalAlignment="Left" Margin="54,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" IsEnabled="False" TextChanged="minusLeftLabel_TextChanged" />
         <TextBox x:Name="minusRightLabel" HorizontalAlignment="Left" Margin="214,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" IsEnabled="False" TextChanged="minusRightLabel_TextChanged"/>
         <Label Content="-" HorizontalAlignment="Left" Margin="150,176,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="=" HorizontalAlignment="Left" Margin="302,176,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="minusOtvLabel" HorizontalAlignment="Left" Margin="356,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" TextChanged="minusOtvLabel_TextChanged" />
+        <TextBox x:Name="minusOtvLabel" HorizontalAlignment="Left" Margin="356,169,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" TextChanged="minusOtvLabel_TextChanged" Text="0" />
         <TextBox x:Name="ymnLeftLabel" HorizontalAlignment="Left" Margin="54,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" IsEnabled="False" TextChanged="ymnLeftLabel_TextChanged"  />
         <TextBox x:Name="ymnRightLabel" HorizontalAlignment="Left" Margin="214,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" IsEnabled="False" TextChanged="ymnRightLabel_TextChanged" />
         <Label Content="*" HorizontalAlignment="Left" Margin="150,234,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="=" HorizontalAlignment="Left" Margin="302,234,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="ymnOtvLabel" HorizontalAlignment="Left" Margin="356,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" TextChanged="ymnOtvLabel_TextChanged"  />
+        <TextBox x:Name="ymnOtvLabel" HorizontalAlignment="Left" Margin="356,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" TextChanged="ymnOtvLabel_TextChanged" Text="0"  />
         <TextBox x:Name="delLeftLabel" HorizontalAlignment="Left" Margin="54,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" IsEnabled="False" TextChanged="delLeftLabel_TextChanged"  />
         <TextBox x:Name="delRightLabel" HorizontalAlignment="Left" Margin="214,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" IsEnabled="False" TextChanged="delRightLabel_TextChanged"  />
         <Label Content="/" HorizontalAlignment="Left" Margin="150,294,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="=" HorizontalAlignment="Left" Margin="302,294,0,0" VerticalAlignment="Top" FontSize="18"/>
-        <TextBox x:Name="delOtvLabel" HorizontalAlignment="Left" Margin="356,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" TextChanged="delOtvLabel_TextChanged"  />
+        <TextBox x:Name="delOtvLabel" HorizontalAlignment="Left" Margin="356,288,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" Height="48" FontSize="18" TextChanged="delOtvLabel_TextChanged" Text="0"  />
+        <Button x:Name="proverka" Content="Проверить" HorizontalAlignment="Left" Margin="498,119,0,0" VerticalAlignment="Top" Height="221" Width="263" Click="proverka_Click"/>
 
     </Grid>
 </Window>
